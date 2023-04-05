@@ -4,11 +4,13 @@ from traits.serializers import TraitSerializer
 from groups.serializers import GroupSerializer
 
 class PetSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(max_length=50)
-    age = serializers.IntegerField(),
+    age = serializers.IntegerField(min_value=0)
     weight = serializers.FloatField()
     sex = serializers.ChoiceField(
-        choices=SexPet.choices
+        choices=SexPet.choices,
+        default=SexPet.DEFAULT
     )
     group = GroupSerializer()
     traits = TraitSerializer(many=True)
