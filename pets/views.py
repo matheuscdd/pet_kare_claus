@@ -68,7 +68,6 @@ class PetDetailsView(APIView, CustomPagination):
                 scientific_name=name
             )
             pet.group = group
-            # serializer.validated_data['group'] = group  # rompendo relacionamento anterior?
 
         if 'traits' in serializer.validated_data.keys():
             traits_raw = serializer.validated_data.pop('traits')
